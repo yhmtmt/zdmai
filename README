@@ -1,5 +1,5 @@
 zdmai is the interface driver for my zdma. See zdma repositly for more detail.
-The driver suplly standard read/write method as a char driver. Notice that the memory block passed to the interface should be aligned to 8byte. Because of the limits of the size of memory pool in the kernel, the number of SG descriptors allocated at once is limited. You should control the size of the buffer passed to the interface carefully. 
+The driver supplies standard read/write method as a char driver. Notice that the memory block passed to the interface should be aligned to 8byte. Because of the limits of the size of memory pool in the kernel, the number of SG descriptors allocated at once is limited. You should control the size of the buffer passed to the interface carefully. 
 
 I attached the sample code "zdmai_test.c" to use the interface. You need to do followings to run the code.
 
@@ -9,7 +9,14 @@ I attached the sample code "zdmai_test.c" to use the interface. You need to do f
 
    	   # zdmai_test dma 100
 
-in this example, 100 x 4 bytes are transfered and received. zdmai_test compares the data transfered and received to check the validity of the configuration and then outputs the bytes per second.
+In this example, 100 x 4 bytes are transfered and received. zdmai_test compares the data transfered and received to check the validity of the configuration and then outputs the bytes per second.
+
+You can use following scripts to start and kill the zdmai module. 
+
+szdmai.sh (for starting up)
+kzdma.sh  (for killing)
+
+These scripts are from Linux Device Drivers version 3 (LDD3). 
 
 Thank you.
 Yohei Matsumoto
