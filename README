@@ -1,0 +1,8 @@
+zdmai is the interface driver for my zdma. See zdma repositly for more detail.
+The driver suplly standard read/write method as a char driver. Notice that the memory block passed to the interface should be aligned to 8byte. Because of the limits of the size of memory pool in the kernel, the number of SG descriptors allocated at once is limited. You should control the size of the buffer passed to the interface carefully. 
+
+Thank you.
+Yohei Matsumoto
+Tokyo University of Marine Science and Technology.
+
+
