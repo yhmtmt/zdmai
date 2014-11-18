@@ -30,7 +30,7 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR
 ("Yohei Matsumoto - Tokyo Univ. Marine Science and Technology <yhmtmt@kaiyodai.ac.jp>");
 MODULE_DESCRIPTION
-("zdmai - test driver module for led and switch of zedboard connected by AXI_GPIO ");
+("zdmai - Interface driver for zdma");
 
 #define DRIVER_NAME "zdmai"
 
