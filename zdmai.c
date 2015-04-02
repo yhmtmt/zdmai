@@ -193,7 +193,7 @@ int zdmai_dma_trans_pages(struct dma_device * dev,
   sglen = dma_map_sg(dev->dev, sg, num_pages, ddir);
   //  pr_info(" done. sglen=%d\n", sglen);
   if(dma_mapping_error(dev->dev, sglen)){
-    pr_err("Oops dma_mapping_error failed.\ n");
+    pr_err("Oops dma_mapping_error failed.\n");
     ret = -ENOMEM;
     goto out;
   }
@@ -234,7 +234,7 @@ int zdmai_dma_trans_pages(struct dma_device * dev,
     pr_info("DMA time out.\n");
     ret = -EIO;
     goto out;
-  }else if(status != DMA_SUCCESS){
+  }else if(status != DMA_COMPLETE){
     pr_info("DMA failed.\n");
     ret = -EIO;
     goto out;
@@ -257,7 +257,8 @@ ssize_t zdmai_read(struct file * filp, char __user * buf, size_t count,
   struct zdmai_local * lp = filp->private_data;
   struct dma_device * rx_dev = lp->rx_chan->device;
   enum dma_ctrl_flags flags;
-  flags = DMA_CTRL_ACK | DMA_COMPL_SKIP_DEST_UNMAP | DMA_PREP_INTERRUPT;
+  //  flags = DMA_CTRL_ACK | DMA_COMPL_SKIP_DEST_UNMAP | DMA_PREP_INTERRUPT;
+  flags = DMA_CTRL_ACK | DMA_PREP_INTERRUPT;
 
   if(down_interruptible(&lp->rx_sem))
     return -ERESTARTSYS;
@@ -278,7 +279,8 @@ ssize_t zdmai_write(struct file * filp, const char __user * buf, size_t count,
   struct dma_device * tx_dev = lp->tx_chan->device;
   enum dma_ctrl_flags flags;
 
-  flags = DMA_CTRL_ACK | DMA_COMPL_SKIP_SRC_UNMAP | DMA_PREP_INTERRUPT;
+  //  flags = DMA_CTRL_ACK | DMA_COMPL_SKIP_SRC_UNMAP | DMA_PREP_INTERRUPT;
+  flags = DMA_CTRL_ACK | DMA_PREP_INTERRUPT;
   
   if(down_interruptible(&lp->tx_sem))
     return -ERESTARTSYS;
